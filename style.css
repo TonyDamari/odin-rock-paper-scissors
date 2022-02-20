@@ -1,0 +1,131 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(#2193b0, #6dd5ed);
+}
+
+.container, #gameOver{
+    width: 800px;
+    background: #f3f3f3;
+    border-radius: 0.2rem;
+}
+
+#gameOver{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+#gameOver h2{
+    margin-bottom: 1rem;
+    font-size: 3rem;
+}
+
+#gameOver p{
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.display{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 3rem;
+    padding: 1.5rem;
+    
+}
+
+#results{
+    width: 100%;
+}
+
+h2{
+    font-size: 2.2rem;
+}
+
+h3{
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.resultsImg{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 5rem;
+    
+}
+
+.resultsImg img{
+    width: 100px;
+}
+
+#resultsText{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 4px 4px 10px rgba(0,0,0,0.3);        
+    padding: 0.8rem;
+    margin-bottom: 1.5rem;
+}
+
+.score{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.playerScore, .computerScore {
+    padding: 0.8rem;
+    box-shadow: inset 4px 4px 10px rgba(0,0,0,0.3),
+                inset -4px -4px 40px rgb(255,255,255),
+                inset -4px -4px 40px rgb(255,255,255),
+                      -6px -8px 40px rgba(255,255,255, 0.3);
+    border-radius: 0.2rem;
+}
+
+.buttons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5rem;
+}
+
+button{
+    background: #fff;
+    padding: 1rem 2.5rem;
+    margin-right: 2rem;
+    border: none;
+    border-radius: 0.2rem;
+    box-shadow: inset 4px 4px 10px rgba(0,0,0,0.3),
+                inset -4px -4px 10px rgb(255,255,255),
+                inset -4px -4px 10px rgb(255,255,255),
+                 -6px -8px 20px rgba(255,255,255, 0.3);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 1.2rem;
+}
+
+button:hover{
+    opacity: 0.5;
+}
+
+button:active{
+    transform: scale(0.9);
+}

@@ -4,10 +4,47 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Rock Paper Scissors</title>
 </head>
 <body>
-    
+    <div class="container">
+        <div class="display">
+            <div id="results">
+                <div class="resultsImg">
+                    <div >
+                        <h3>Player Choice</h3>
+                        <img id="playerChoice" src="assets/paper.png" alt="">
+                    </div>
+                    <div >
+                        <h3>Computer Choice</h3>
+                        <img id="computerChoice" src="assets/paper.png" alt="">
+                    </div>
+                </div>
+                <div id="resultsText">
+                    <h2>Press Play</h2>
+                </div>
+            </div>
+            <div class="score">
+                <div class="playerScore">
+                    <h3>Player Score</h3>
+                    <div id="playerScore">0</div>
+                </div>
+                <div class="computerScore">
+                    <h3>Computer Score</h3>
+                    <div id="computerScore">0</div>
+                </div>
+               
+            </div>
+        </div>
+        <div class="buttons">
+            <button id="play" value="play">Play</button>
+            <button id="rock" value="rock">Rock</button>
+            <button id="paper" value="paper">Paper</button>
+            <button id="scissors" value="scissors">Scissors</button>
+        </div>
+    </div>
+    <section id="gameOver"></section>
     <script src="app.js"></script>
 </body>
 </html>

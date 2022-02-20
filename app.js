@@ -1,96 +1,166 @@
 
-
-let computerScore = 0
-let playerScore = 0
-
-// console.log("Player Selection: " + playerSelection)
-// console.log("Computer Selection: " + computerSelection)
-// console.log(playRound(playerSelection,computerSelection))
+// required elements
+const results = document.getElementById('results')
+const playerChoice = document.getElementById('playerChoice')
+const computerChoice = document.getElementById('computerChoice')
+const resultsText = document.getElementById('resultsText')
+const playerScore = document.getElementById('playerScore')
+const computerScore = document.getElementById('computerScore')
+const play = document.getElementById('play')
+const rock = document.getElementById('rock')
+const paper = document.getElementById('paper')
+const scissors = document.getElementById('scissors')
 
 function game(){
 
-    function computerPlay(){
-        const computerOptions = ['rock', 'paper', 'scissors']
-        const computerOutput = computerOptions[Math.floor(Math.random()*computerOptions.length)];
-        return computerOutput
-    }
-    
-    function playerPlay(){
-        let playerInput = prompt('Enter your selection here')
-        return playerInput.toLowerCase()
-    }
-    
-    
-    
-    
-    function playRound(playerSelection, computerSelection){
-    
-    
-        if(playerSelection === 'rock' && computerSelection === 'paper'){
-            computerScore++
-            return "You Lose! Paper beats Rock"
-        } else if(playerSelection === 'rock' && computerSelection === 'scissors'){
-            playerScore++
-            return "You Win! Rock beats Scissors"
-        }else if(playerSelection === 'rock' && computerSelection === 'rock'){
-            return "It's a tie, no one wins"
-        }else if(playerSelection === 'paper' && computerSelection === 'scissors'){
-            computerScore++
-            return "You Lose! Scissors beats Paper"
-        }else if(playerSelection === 'paper' && computerSelection === 'rock'){
-            playerScore++
-            return "You Win! Paper beats Rock"
-        }else if(playerSelection === 'paper' && computerSelection === 'paper'){
-            return "It's a tie, no one wins" 
-        }else if(playerSelection === 'scissors' && computerSelection === 'rock'){
-            computerScore++
-            return "ou Lose! Rock beats Scissors"
-        }else if(playerSelection === 'scissors' && computerSelection === 'paper'){
-            playerScore++
-            return "You Win! Rock beats Scissors"
-        }else if(playerSelection === 'scissors' && computerSelection === 'scissors'){
-            console.log("It's a tie, no one wins")
-        }else{
-            return "Player did not enter selection"
-        }
-    }
-    
-    
-    
-    const playerSelection = playerPlay()
-    const computerSelection = computerPlay()
+let scorePlayer = 0
+let scoreComputer = 0
 
-
-
-
-    console.log("Player Selection: " + playerSelection)
-    console.log("Computer Selection: " + computerSelection)
-    console.log(playRound(playerSelection,computerSelection))
-    // console.log(playerScore)
-
+// game play function
+play.addEventListener('click', () =>{
+    resultsText.innerHTML = `<h2>Choose an option</h2>`
+    
+    playerPlay()
    
     
-}
 
-let i = 1
-
-while(i<6){
     
-   console.log("ROUND!!: " + i)
-   game()
-    i++
-    console.log('Player Score: ' + playerScore)
-    console.log('Computer score: ' + computerScore)
-    console.log(' ')
+})
 
-    if(i === 6){
-        if(playerScore > computerScore){
-            console.log("You Win!!!")
-        }else if(playerScore === computerScore){
-            console.log('It is a tie, no one has won')
-        } else{
-            console.log("Computer Wins!!!")
-        }
-       
-    }
+//functions
+
+function computerPlay(){
+    const computerOptions = ['rock', 'paper', 'scissors']
+    const computerOutput = computerOptions[Math.floor(Math.random()*computerOptions.length)];
+    return computerOutput
 }
+
+
+
+function playerPlay(){
+   
+    const playerOptions = [rock,paper,scissors]
+
+     playerOptions.forEach(option => {
+        option.addEventListener('click', () =>{
+           
+            const playerSelection = option.value
+            const computerSelection = computerPlay()
+            const gameOver = document.getElementById('gameOver')
+
+             playRound(playerSelection, computerSelection)
+             computerScore.innerText = scoreComputer
+             playerScore.innerText = scorePlayer
+           
+            if(scoreComputer > 4){
+                
+                gameOver.innerHTML = 
+                `<h2>Game Over!!!!!</h2>
+                <p>Computer Wins!!!</p>`
+                setTimeout(reset, 5000)
+            }else if(scorePlayer > 4){
+                gameOver.innerHTML = 
+                `<h2>Game Over!!!!!</h2>
+                <p>Player Wins!!!</p>`
+                setTimeout(reset, 5000)
+            }
+            
+           
+        })
+    })
+
+    
+}
+
+function reset(){
+    location.reload()
+}
+
+
+
+function playRound(playerSelection, computerSelection){
+    
+    
+    if(playerSelection === 'rock' && computerSelection === 'paper'){
+        playerChoice.src = 'assets/rock.png'
+        computerChoice.src = 'assets/paper.png'
+        scoreComputer++
+        resultsText.innerHTML = `<h2>You Lose! Paper beats Rock</h2>`
+        resultsText.style.background = 'red'
+        resultsText.style.color = 'white'
+        return 
+    } else if(playerSelection === 'rock' && computerSelection === 'scissors'){
+        playerChoice.src = 'assets/rock.png'
+        computerChoice.src = 'assets/scissors.png'
+        scorePlayer++
+        resultsText.innerHTML = `<h2>You Win! Rock beats Scissors</h2>`
+        resultsText.style.background = 'green'
+        resultsText.style.color = 'white'
+        return 
+    }else if(playerSelection === 'rock' && computerSelection === 'rock'){
+        playerChoice.src = 'assets/rock.png'
+        computerChoice.src = 'assets/rock.png'
+        resultsText.innerHTML = `<h2>It's a tie, no one wins</h2>`
+        resultsText.style.background = 'indigo'
+        resultsText.style.color = 'white'
+        return 
+    }else if(playerSelection === 'paper' && computerSelection === 'scissors'){
+        playerChoice.src = 'assets/paper.png'
+        computerChoice.src = 'assets/scissors.png'
+        scoreComputer++
+        resultsText.innerHTML = `<h2>You Lose! Scissors beats Paper</h2>`
+        resultsText.style.background = 'red'
+        resultsText.style.color = 'white'
+        return 
+    }else if(playerSelection === 'paper' && computerSelection === 'rock'){
+        playerChoice.src = 'assets/paper.png'
+        computerChoice.src = 'assets/rock.png'
+        scorePlayer++
+        resultsText.innerHTML = `<h2>You Win! Paper beats Rock</h2>`
+        resultsText.style.background = 'green'
+        resultsText.style.color = 'white'
+        return 
+    }else if(playerSelection === 'paper' && computerSelection === 'paper'){
+        playerChoice.src = 'assets/paper.png'
+        computerChoice.src = 'assets/paper.png'
+        resultsText.innerHTML = `<h2>It's a tie, no one wins</h2>`
+        resultsText.style.background = 'indigo'
+        resultsText.style.color = 'white'
+        return
+    }else if(playerSelection === 'scissors' && computerSelection === 'rock'){
+        playerChoice.src = 'assets/scissors.png'
+        computerChoice.src = 'assets/rock.png'
+        scoreComputer++
+        resultsText.innerHTML = `<h2>You Lose! Rock beats Scissors</h2>`
+        resultsText.style.background = 'red'
+        resultsText.style.color = 'white'
+        return 
+    }else if(playerSelection === 'scissors' && computerSelection === 'paper'){
+        playerChoice.src = 'assets/scissors.png'
+        computerChoice.src = 'assets/paper.png'
+        scorePlayer++
+        resultsText.innerHTML = `<h2>You Win! Rock beats Scissors</h2>`
+        resultsText.style.background = 'green'
+        resultsText.style.color = 'white'
+        return 
+    }else if(playerSelection === 'scissors' && computerSelection === 'scissors'){
+        playerChoice.src = 'assets/scissors.png'
+        computerChoice.src = 'assets/scissors.png'
+        resultsText.innerHTML = `<h2>It's a tie, no one wins</h2>`
+        resultsText.style.background = 'indigo'
+        resultsText.style.color = 'white'
+        return 
+    }else{
+        resultsText.innerHTML = `<h2>Player did not enter selection!!!!</h2>`
+        resultsText.style.background = 'red'
+        resultsText.style.color = 'white'
+        return
+    }
+
+   
+}
+
+
+}
+
+game()
